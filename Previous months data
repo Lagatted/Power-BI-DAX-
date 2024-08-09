@@ -1,0 +1,5 @@
+Previous Month Deposits = 
+CALCULATE(
+    [Total_Deposits],
+    DATEADD('Calendar'[Date], -1, MONTH)
+)
