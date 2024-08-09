@@ -1,0 +1,21 @@
+Formatted KPI with Arrow for Deposits = 
+VAR PercentageChange = 
+    VAR CurrentMonthDeposits = [Total_Deposits]
+    VAR PreviousMonthDeposits = [Previous Month Deposits]
+    RETURN
+    IF(
+        ISBLANK(PreviousMonthDeposits),
+        BLANK(),
+        (CurrentMonthDeposits - PreviousMonthDeposits) / PreviousMonthDeposits
+    )
+
+VAR Arrow = 
+    SWITCH(
+        TRUE(),
+        PercentageChange > 0, "▲",
+        PercentageChange < 0, "▼",
+        " "
+    )
+
+RETURN
+    Arrow & " " & FORMAT(PercentageChange, "0.0%")
